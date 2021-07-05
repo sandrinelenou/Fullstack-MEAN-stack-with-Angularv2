@@ -1,0 +1,382 @@
+PROGETTO ANGULAR
+
+-run node -v
+-run npm -v
+-run angular cli, npm i -g @angular/cli
+
+create project app con 
+- ng new angularEcommercecd cr	
+
+entra nella cartella del progetto et lancia il server con
+-cd angularEcommerce
+-cd client 
+- ng serve --open ( --open apre il browser e carica il progetto compilato lanciando il server http://localhost:4200)
+
+we can use any framework ant server setup for API(cloud hosted APIs, mock endpoint, JSON Server: npm i --save json-server)
+
+creare la cartella client incollare tutti file del progetto per la parte frontend 
+
+Install bootstrap e font awesome in angular project
+- cd angularEcommerce
+-cd client
+- npm install --save bootstrap jquery   //npm i bootstrap, npm i jquery
+- npm i font-awesome
+
+puoi in style.css agguingere questi link:
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+In angular.json file In the  build agguingere questi a style e script path
+ "styles": [
+              "src/styles.css"
+            //-  "node_modules/boostrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              //  "node_modules/boostrap/dist/jquery/jquery.min.js",
+              //  "node_modules/boostrap/dist/js/bootstrap.min.js"
+            ]
+dopo reload the app quando si cambia angular cli le modifiche non prendeno in automatico
+
+Generate new component
+-ng generate component products
+
+per usare le tag di form o input 
+error: Can't bind to 'ngModel' since it isn't a known property of 'input'
+
+aggiungere nel file app.module.ts
+import { FormsModule } from '@angular/forms';
+puoi in imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule ---questo
+
+add tag <app-products></app-products> nel file app.component.html.  pass data parent to child
+
+Displaying detail of product
+event binding. la prima volta che lanciamo l'App genera errore perche la property selectedProduct.name non n'è definita , è definita soltanto quando selectedPoduct esiste 
+ecco perche è definita la directive *ngIf="selectedProduct" nel file app.component.html
+
+creare una cartelle models/ file product.ts dove andiamo a definire le property di product //add class Hero con 2 proprity
+export class Product {
+  id: number | undefined;
+  name: string | undefined;
+}
+
+puoi nel file products.component.ts importare il modello 
+import { Product } from '../models/product';
+
+creamo il component product-detail
+-ng g component product-detail
+
+scrivere nel template product-details.component.html 
+pero invece di *ngIf="selectedProduct" scriveremo  *ngIf="product"
+quindi selectedProduct è stato rimpiazzato da product dappertutto in product-detail
+<div *ngIf="product">
+
+    <h3>{{product.name}} details!</h3>
+    <div><span>#id: </span>{{product.id}}</div>
+
+    <div>
+      <label for="product-name">Name:</label>
+      <input id="product-name" [(ngModel)]="product.name" placeholder="name" />
+    </div>
+
+  </div> <!--fine div if selectedProduct-->
+
+Agguingere @input() product property per il binding della proprietà product del component chi è di tipo Product
+
+import Product symbol nel file product-detail.component.ts, import { Product } from '../models/product';
+
+si come product è una proprietà di input annatat con il decoratore @. per fare si che si legge dall'esterno @Input() productsComponent cio è products.component.html
+<app-product-detail [product]="selectedProduct"></app-product-detail> . pass data parent to child
+
+ in product-detail.component.ts 
+import { Component, OnInit, Input } from '@angular/core';
+@Input() product: Product;
+
+create app/services folder. I servizi sono un ottimo modo per condividere informazioni tra classi che non si conoscono .
+
+Setup up APIs and Mock Data using JSON-SERVER
+API andare a assets/ data folder/db.json file con dati . puoi 
+cd C:\xampp\htdocs\AngularTourOfHeroes\angularEcommerce\client\src\assets\data lanciare il server con
+prima se non è installato installare json server con npm i --save json-server
+- json-server --watch .db\db.json
+http://localhost:3000/products    //http://localhost:3000/ testing the endpoints
+
+
+SERVICE
+-ng generate service services/product ,crea file la cartella services e i file product.service.ts
+
+in app.module.ts aggiungere providers: [HeroService] o  //fornire il servizio(provide)
+
+creamo il data service dentro il file mock-product.ts agguingiamo questo:
+import { Product } from './product';
+
+export const PRODUCTS: Product[] = [
+  { id: 11, name: 'Forever Aloe Vera Gel' },
+  { id: 12, name: 'Forever Freedom' },
+  { id: 13, name: 'Forever Bright Toothgel' },
+  { id: 14, name: 'Aloe Hand Soap' },
+  { id: 15, name: 'Aloe Ever-Shield Deodorant' },
+  { id: 16, name: 'Aloe First' },
+  { id: 17, name: 'Forever Hand Sanitizer' },
+  { id: 18, name: 'Absorbent-C' },
+  { id: 19, name: 'Forever Garlic Thym' },
+  { id: 20, name: 'Forever Vit' },
+  { id: 21, name: 'Aloe Propolis Creme' },
+  { id: 22, name: 'Aloe Vera Gelly' }
+];
+in product.service.ts agguingere il metodo chi returna la promessa o d
+getHeroes(): Promise<Hero[]> {
+    return Promise.resolve(HEROES);
+}
+class classname {
+   Propertyname: PropertyType = Value
+}
+
+ROUTE
+ go to the file app-routing.module.ts  agguigere le route , component, importare le classes
+import { RouterModule, Routes } from '@angular/router';
+
+import { ProductsComponent } from './products/products.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+//declarare le routes
+const routes: Routes = [
+  { path: '', redirectTo: '/dasboard', pathMatch: 'full' },
+  //{ path: 'dasboard', component: DasbordComponent },
+  { path: 'products', component: ProductsComponent },
+ { path: 'details/:id', component:ProductDetailComponent }
+];
+
+per fare funzionare agguingere <router-outlet></router-outlet> dove vogliamo il rendering della view
+
+Come passare i parametri alla route di angular
+-definire la route in app-routing.module.ts
+const routes: Routes = [
+  { path: '', redirectTo: '/dasboard', pathMatch: 'full' },
+ { path: 'dashboard', component: DashbaordComponent },
+  { path: 'products', component: ProductsComponent },
+ { path: 'product-detail/:id/:name', component:ProductDetailComponent }
+];
+-definire la navigazione 
+<a [routerLink]="['/Product', product.id, product.name]">{{product.name}} </a>
+-extrare i parametri in the component con l'import di activatedRoute in product-detail.component.ts
+import { ActivatedRoute } from '@angular/router';
+-inietare dentro il component usando dependecy injection
+constructor(private _Activatedroute:ActivatedRoute)
+
+
+CREATE A NEW APP WITH ROUTING
+generate a project with routing
+-ng new routing-app --routing
+generete component
+- ng g c department-list
+configurate routing module (app-routing.modules.ts)
+const routes: Routes = [
+
+  { path: 'departments', component: DepartmentListComponent },
+  { path: 'employees' , component: EmployeeListComponent }
+];
+puoi import components
+import { DepartmentListComponent } from './department-list/department-list.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+
+dichiarare questa variabile export const routingComponents = [DepartmentListComponent, EmployeeListComponent ];  e importare in app.module.ts
+
+in the app.module.ts we imported the vaiable in agguinto a AppRoutingModule :import { AppRoutingModule, routingComponents} from './app-routing.module';
+
+impostare la navigazione del link 
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink ="/departments" routerLinkActive ="active" >Departments</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink ="/employees" routerLinkActive ="active" >Employees</a>
+      </li>
+     
+    </ul>
+  </nav> e funzionano
+
+creare il componente per la pagina not found 
+-ng g c page-not-found -it -is    (it:senza template, senza style) puoi agguingere il percorso in app-routing a la fine dei percorsi
+{ path: '**', component: PageNotFoundComponent }   
+specificare sempre la route de default all'inizio dei percorsi
+{ path: '', component: DepartmentListComponent },
+
+ ROUTE PARAMETERS
+creare la pagina di detail per department 
+-ng g c department-detail -it -is
+configurare il percorso in app-routing per il parametro id
+- { path: 'departments/:id', component: DepartmentDetailComponent }, 'departments/:id' è come aparira sul browser il placeholder
+ importare i component anche puoi agguingere il componente import { DepartmentDetailComponent } from './department-detail/department-detail.component';
+in routingComponents app-routing.module.ts
+
+In departemt-list-component.html abbiamo 
+ <li *ngFor="let department of  departments" (click)="onSelect(department)" >
+      <span class="badge">{{department.id}}</span> {{department.name }}
+  </li> quando si clicca su un dipartment onSelect recupera i parametri o argumenti del department, li passi tramite la route per questo bisogna importare router con 
+
+In departement-list.component.ts per passare il parameter to url o route con navigate metodo
+/*route parameters prende id al click e navigare to the new route
+  info che ha bisogno angular per construire i parametri,il primo è il percorso dove vogliamo navigare il secondo è il parametro
+   */ 
+  onSelect(department) {
+    this.router.navigate(['/departments', department.id]);   //link parameter navigate
+
+  }
+
+ In departement-detail.component.ts
+per recuperare e leggere  il parametro  passato tramite la navigazione o url o route bisogna activare ActivatedRoute nel file departement-detail.component.ts con 
+import { ActivatedRoute } from '@angular/router';   //per recuperare i dati passati come parametri in route
+template: `
+    <h3>You selected department with id = {{departmentId}}  details!</h3>
+  <div><span>#id: </span>{{departmentId}}</div>
+  `,
+-creare una nuova variabile
+  public departmentId: any;
+
+-instanziare activatedRoute 
+  //dependency injection, creamo un instanza di ActivatedRoute
+  constructor(private route: ActivatedRoute) { }
+
+-puoi recuperiamo e leggiamo i dati passati tramite route 
+  ngOnInit(): void {
+//snapshot  metodo check solo il parametro dell'url
+    let id = parseInt(this.route.snapshot.paramMap.get('id'));   //prende il parametro 'id passato nel url o nella route
+    this.departmentId = id; //assegna id alla variabile locale, bind this id to the view
+
+//ParamMap Observable metodo, check anche il parametro passato come url anche nella pagina --recomander
+    this.route.paramMap.subscribe((params: ParamMap) => { 
+	let id = parseInt(params.get('id'));
+      	this.departmentId = id;
+    }) ;
+  }
+//oppure
+ this.route.paramMap.subscribe(params => {
+      let id = params.get("id");
+      this.selectedId = id;
+
+Event binding data 
+Recuperer id del prodotto quando si clicca sul prodotto. 
+-prima si selecziona il prodotto con il click (click)="onSelect(product)" 
+ puoi nel product.component.ts o department.list.component.ts andare a recuperare id del prodotto  e passare nel url o route con pero prima importare import { Router, ActivatedRoute, ParamMap } from '@angular/router'; 
+instanziare il router e activateRoute con constructor(private productService: ProductService, private router: Router, private route : ActivatedRoute) { } per puoi
+ onSelect(product: { id: any; }) {
+    this.router.navigate(['/products', product.id]);    //path and root parameter
+  }
+assegnare a la variabile selectedId id recuperato nel url con :
+ isSelected(product: { id: any; }) {
+    return product.id === this.selectedId;    
+  }
+
+iv>
+      <button (click)="goPrevious()">Previews</button>
+      <button (click)="goNext()">Next</button>
+
+CHILD ROUTES
+creare il component
+-ng g c contact
+andare nella pagina dove si trova il link per la pagina contact quindi department-detail.component.ts agguingere nel template il
+ buttone   <button class="btn btn-info mb-5" (click)= "showContact()">Contact</button> e event click puoi la route que seguire al click del evento
+showContact() {
+    this.router.navigate(['contact'], { relativeTo: this.route });
+  }
+puoi agguingere nel emplare <router-outlet></router-outlet> dove vogliamo che stampa la gadina contact
+
+Angular6 CLI + MATERIAL STARTER TEMPLATES
+ng generate @angular/material:material-nav --name=my-nav   //MATERIAL SIDENAV
+ng generate @angular/material:material-dashboard --name=my-dashboard   //MATERIAL DASHBOARD
+ng generate @angular/material:material-table --name=my-table   //MATERIAL DATATABLE
+
+ANGULAR ELEMENT, IVY
+wrap an angular component list in a custom element
+
+View data details, @input decorator when parent send data to parent.
+@input decorator per passare o share i dati to another component.passing data between components in ingular
+per fare display della pagina details product, in product-detail.component.ts declarare @Input() product: Product | undefined;  puoi instanziate router an ActivatedRoute per passare i dati nel url et leggerlo
+constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) { }. nella funzione ngOnInit()  prendere id argomento nella route e cercare il prodotto relative a questo id per poter stampare i dattagli
+ngOnInit() {
+    // First get the product id from the current route.
+    const routeParams = this.route.snapshot.paramMap;
+    const productIdFromRoute = Number(routeParams.get('id'));
+
+    // Find the product that correspond with the id provided in route.
+    this.product = this.productService.getProducts().find(product => product.id === productIdFromRoute);
+
+  }nella pagina product-detail.html. faire il bind del dato <div class="card offset-3" *ngIf="product">se il prodotto esiste altrimento appena arriviamo sulla pagina non riconosce le variabile  {{product.id}}, {{product.name}}
+
+
+ANGULAR HTTP
+first andare a registrare il modulo HttpClientModule prima di importare inapp.module.ts 
+import { HttpClientModule } from '@angular/common/http'; puoi agguingere il modulo in 
+ imports: [
+    BrowserModule,    
+    AppRoutingModule,   
+    FormsModule,
+    HttpClientModule]
+
+pulling data from API
+in categories.component.ts import HttpClient import { HttpClient/*, Response */} from '@angular/common/http'; create variable posts , instanziate htttp with constructor(private http: HttpClient) { }  and fetch data
+
+HTTP, OBSERVABLES AND RxJS
+- HTTP Get request from posts
+-receive the observable and cast it into an post array
+-subscribe to the observable from empty and empDetail
+-Assign the post array to a local variable
+
+OBSERVABLES
+A sequence of items that arrive asynchronously over time .HTTP call- single item, Single item - HTTP response
+
+
+PROXYING TO A BACKEND SERVER 
+to divert all calls for http://localhost:4200/api to a server running on http://localhost:3000/api, 
+1.Create a file proxy.conf.json in your project's src/ folder.
+
+2.Add the following content to the new proxy file:
+{
+  "/api": {
+    "target": "http://localhost:3000",
+    "secure": false
+  }
+}
+3.In the CLI configuration file, angular.json, add the proxyConfig option to the serve target:
+"architect": {
+  "serve": {
+    "builder": "@angular-devkit/build-angular:dev-server",
+    "options": {
+      "browserTarget": "your-application-name:build",
+      "proxyConfig": "src/proxy.conf.json"
+    },
+4.To run the dev server with this proxy configuration, call ng serve.
+api = "http://localhost:3000";
+
+ANGULAR FORMS TUTORIAL
+prima cosa importare il modulo formsModule
+import { FormsModule, NgForm } from '@angular/forms';
+dichiarare le proprieta del campo input con il decorator 
+@Input() name: string | undefined;
+
+.spec.ts il file viene utilizzato per unit testing l'applicazione.
+ng g c employees/listEmployees --skipTests=true per non creare il file spec.ts file di testing
+
+
+ANGULAR & NODESJS . THE MEAN STACK GUIDE
+Adding the Node Backend
+create folder backend inside projet C:\xampp\htdocs\AngularProject\AngularTourOfProducts\angularEcommerce\backend
+create fileserver.js inside src project C:\xampp\htdocs\AngularProject\AngularTourOfProducts\angularEcommerce\client\server.js
+
+To launch server node server.js
+install express npm install --save express
+In the folder backend add app.js file
+
+<div *ngIf="editTitle">
+    <iframe width="100%" height="300" [src]="video.url | safe"></iframe>
+</div>
+error unsafe value used in a resource URL context (see https://g.co/ng/security#xss)
+the video can't be play , url of video is not save .we are going to generate a new pipe
+C:\xampp\htdocs\AngularProject\AngularTourOfProducts\angularEcommerce\client>ng g p safe
+safe accept the video and save the video
+
+Converting the form from a Template driven to a Reactive Approach(adding image to post)
+In the app.modules cambiare FormsModule to ReactiveFormsModule

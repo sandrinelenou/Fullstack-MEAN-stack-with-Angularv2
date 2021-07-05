@@ -1,0 +1,23 @@
+<main class=" ">
+  <app-header></app-header>
+  <div class=" container my-5 ">
+    <!--<h1 class="text-center ">{{title}}</h1>-->
+
+
+
+    <!--<div (childEvent) = "message = $event" ></div>-->
+    <main>
+    <router-outlet></router-outlet>
+    </main>
+    <!--<app-post-create (postCreated)="onPostAdded($event)"></app-post-create>-->
+    <!--<app-post-list [posts]="storedPosts" class="my-5"></app-post-list>-->
+  </div>
+  <!--dove abbiamo usato il selettore, ascoltiamo postCreated usando il binding di eventi e chiamiamo la funzione onPostAdded ()-->
+
+  <app-footer></app-footer>
+</main>
+
+
+
+
+

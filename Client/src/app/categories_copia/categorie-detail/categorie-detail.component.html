@@ -1,0 +1,21 @@
+<!--<p>categorie-detail works!</p>-->
+<form #UpdateCategorieForm="ngForm"  (ngSubmit)="updateCategorie(UpdateCategorieForm)">
+
+  <div class="card text-center  offset-3" *ngIf="categorieDetail">
+    <div class="card-header "><h3>Detail Categorie</h3></div>
+    <div class="card-body">
+      <h5>#id : {{categorieDetail.id}} </h5>
+      <!--<h5>Name: {{categorieDetail.name}} </h5>-->
+      <label>name:</label>
+      <input type="text" placeholder="name" [(ngModel)]="categorieDetail.name " cols="80" />
+    </div>
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-success mt-4 float-left">Update</button><!--(click)="updateCategorie()"-->
+      <button type="submit" class="btn btn-danger mt-4 float-center" >Delete</button><!--(click)="deleteCategorie(categorieDetail.id)-->
+      <button class="btn btn-info mt-4 float-right" (click)="goBack()">Go  back</button>
+    </div>
+
+  </div>
+</form>
+

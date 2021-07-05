@@ -1,0 +1,21 @@
+<!--<p>products-form works!</p>-->
+<form #addProductForm="ngForm">
+  <div class="card offset-3  mt-5">
+    <div class="card-header"><h3>{{ pageTitle }}</h3></div>
+    <div class="card-body">
+      <div *ngIf="mode=='VIEW'">
+        <h5>#id : {{productDetails.id}} </h5>
+        <h5>Name: {{productDetails.name}} </h5>
+      </div>
+      <div class="form-group" *ngIf="mode !='VIEW'">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"  [(ngModel)]="productDetails.name"  class="form-control" placeholder="Enter name" >
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-info" (click)="submitProduct()" *ngIf="mode != 'VIEW'">Invia </button>&nbsp;&nbsp;
+      <button class="btn btn-dark" (click)="goBack()" *ngIf="mode == 'VIEW'">Go back</button>
+    </div>
+  </div>
+</form>
+

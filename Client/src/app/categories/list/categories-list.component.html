@@ -1,0 +1,31 @@
+<div class="row mb-5">
+  <h2 class="col-6">Categories</h2>
+  <div class="col-3"></div>
+  <!--<div><a mat-button routerLink="/categories/create" mat-raised-button  color="accent">New Category</a></div>-->
+  <div><a  routerLink="/categories/create"  class="btn btn-secondary">New Category</a></div>
+</div>
+
+<table class="table col-md-8 offset-md-3">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col" colspan="3">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let categorie of categoryList ">
+      <th scope="row">{{categorie.id}}</th>
+      <td>{{categorie.name}}</td>
+      <td style="width: 70px;">
+        <a [routerLink]="['/categories/edit-categorie/', categorie.id]" class="btn btn-info"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></a>
+      </td>
+      <td style="width: 70px;">
+        <button class="btn btn-danger" (click)="deleteCase(categorie.id); $event.stopPropagation()" > <i class="fa fa-trash " aria-hidden="true" ></i></button>
+      </td>
+      <td style="width: 70px;">
+        <a routerLink="/categories/view-categorie/{{categorie.id}}" class="btn btn-warning"> <i class="fa fa-eye " aria-hidden="true"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

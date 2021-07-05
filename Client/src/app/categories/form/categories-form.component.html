@@ -1,0 +1,19 @@
+<form #addcategorieForm="ngForm" >
+  <div class="card offset-3  mt-5">
+    <div class="card-header"><h3>{{pageTitle}}</h3></div>
+    <div class="card-body">
+      <div *ngIf="mode=='DETAIL'"> 
+        <h5>#id : {{categorieDetails.id}} </h5>
+        <h5>Name: {{categorieDetails.name}} </h5>
+      </div>
+      <div class="form-group" *ngIf="mode !='DETAIL'">
+        <label for="name" >Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="categorieDetails.name" class="form-control" placeholder="Enter name">
+      </div>
+    </div>
+    <div class="card-footer">
+      <button  (click)="submitCategorie()" class="btn btn-info" *ngIf="mode !='DETAIL'" >Invia</button>
+      <button  class="btn btn-dark" *ngIf="mode =='DETAIL'"(click)="goBack()">Go back</button>
+    </div>
+  </div>
+</form>

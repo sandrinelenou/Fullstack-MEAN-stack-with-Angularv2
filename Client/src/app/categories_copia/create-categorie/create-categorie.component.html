@@ -1,0 +1,25 @@
+<!--<p>create-categorie works!</p>-->
+<!--Template driven forms-->
+<form #addcategorieForm="ngForm" (ngSubmit)="addNewCategorie(addcategorieForm)">
+  <div class="card offset-3  mt-5">
+    <div class="card-header  "><h3>Create new categorie</h3></div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name" class="form-control" placeholder="Enter name"><!---->
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-info">Add categorie</button><!--<!--(click)="addNewProduct()"-->
+      <!--<button class="btn btn-info mt-4 float-right" (click)=" goBack()">Go  back</button>--><!--(click)=" goBack1()"-->
+    </div>
+  </div>
+</form>
+
+<!--{{addcategorieForm.value | json}}-->
+
+
+
+
+

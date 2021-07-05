@@ -1,0 +1,54 @@
+<h2 class="text-center">Video Detail</h2>
+<div>
+  <div>
+    <iframe width="600" height="400" [src]="video.url | safe"></iframe>
+  </div>
+
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control" name="title" [(ngModel)]="video.title" required placeholder="title" />
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" name="url" [(ngModel)]="video.url" required placeholder="title" />
+    </div>
+    <div class="form-group">
+      <textarea class="form-control" rows="4" name="desc" [(ngModel)]="video.description" required placeholder="title"></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-warning" (click)="updateVideo()">Update</button> &nbsp;
+    <button type="submit" class="btn btn-danger" (click)="deleteVideo()">Delete</button>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div *ngIf="editTitle" class="form-group">
+   <input type="text" class="form-control" name="title" [(ngModel)]="video.title" required placeholder="title" />
+ </div>-->
+<!--<h3 *ngIf="!editTitle" (click)="onTitleClick()">{{video.title}}</h3>-->
+<!--<div class="form-group" *ngIf="editUrl">
+  <input type="text" class="form-control" name="url" [(ngModel)]="video.url" required placeholder="title" />
+</div>
+<h3 *ngIf="!editUrl" (click)="onUrlClick()">{{video.url}}</h3>
+
+<div class="form-group" *ngIf="editDescription">
+  <textarea class="form-control" rows="4" name="desc" [(ngModel)]="video.description" required placeholder="title"></textarea>
+</div>
+<h3 *ngIf="!editDescription" (click)="onDescriptionClick()">{{video.description}}</h3>-->
+<!--
+   Video List => output => videoCenter => Capture Selected Video
+   Video Center => input => Video detail => Display Details
+  share data from parent(video center) to child (video detail) in the video detail component we are going to
+  declare an input variable @Input() video: any; to share data an in the parent we are goin to binding data with [video]="selectedVideo"
+ -->

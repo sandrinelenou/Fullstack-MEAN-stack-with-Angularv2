@@ -1,0 +1,26 @@
+<div class="my-5">
+  <h3 class="text-center">My Dashboard</h3>
+  <nav class="my-5 text-center nav">
+    <a [routerLink]=" ['/dashboard' ] " class="btn btn-primary">Dashboard</a>&nbsp;
+    <a [routerLink]="['/products' ]" class="btn btn-secondary">Products</a>&nbsp;
+    <a [routerLink]=" ['/products/create' ] " class="btn btn-info"> New Product</a>&nbsp;
+    <a [routerLink]="['/categories' ]" class="btn btn-warning">Categories</a>&nbsp;
+    <a [routerLink]=" ['/categories/create' ] " class="btn btn-success"> New Categorie</a>&nbsp;
+    <a [routerLink]=" ['/users' ] " class="btn btn-dark">Users</a>&nbsp;
+    <a [routerLink]=" ['/users/create' ] " class="btn btn-danger">New User</a>&nbsp;
+    <a [routerLink]=" ['/post-list' ] " class="btn btn-warning">Posts</a>&nbsp;
+    <a [routerLink]=" ['/post-create' ] " class="btn btn-secondary"> New Post</a>&nbsp;
+    <a [routerLink]=" ['/videos' ] " class="btn btn-success ">Playlist Videos</a>&nbsp;
+
+    <!--<a [routerLink]=" ['/video-create' ] " class="btn btn-warning mt-3">New video</a>
+      <a router-link="/dashboard" routerLinkActive="active " class="btn btn-light">Demo</a>&nbsp;
+<a router-link="/dashboard" routerLinkActive="active ">Dashboard</a>-->
+  </nav>
+
+  <div class="grid grid-pad py-3">
+    <a  *ngFor="let product of products" class ="col-1-4" [title]="product.name + ' details'" >
+      <div class="module product" *ngIf="product.name"><h5>{{ product.name}}</h5></div>
+    </a>
+  </div>
+
+</div>

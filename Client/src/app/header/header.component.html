@@ -1,0 +1,114 @@
+<mat-toolbar color="primary" class="navbar">
+  <span class="logo"><a routerLink=""><mat-icon>eco</mat-icon>Logo</a></span>
+  <div class="menu-spacer "></div>
+  <div>
+    <ul>
+
+      <li><a mat-button routerLink="dashboard">Dashboard</a></li>
+      <li><a mat-button routerLink="post-list">Posts</a></li>
+      <li><a mat-button routerLink="videos">Videos</a></li>
+      <li><a mat-button routerLink="products">Products</a></li>
+      <li><a mat-button routerLink="categories">Categories</a></li>
+      <li><a mat-button routerLink="users">Users</a></li>&nbsp;
+      <li><a mat-raised-button color="light" mat-button routerLink = "login"  routerLinkActive = "">Login</a></li>&nbsp;&nbsp;
+      <li> <a mat-raised-button color="accent" routerLink = "signup" >Sign up</a></li>
+    </ul>
+
+  </div>
+</mat-toolbar>
+
+
+
+<!--<nav class="navbar navbar-expand-md bg-light navbar-light">-->
+  <!-- Brand -->
+  <!--<a class="navbar-brand" href="#"><mat-icon>home</mat-icon></a>-->
+
+  <!-- Toggler/collapsibe Button -->
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>-->
+
+  <!-- Navbar links -->
+  <!--<div class="collapse navbar-collapse " id="collapsibleNavbar">
+
+    <ul class="navbar-nav tex-center">
+
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]=" ['/products' ] "><mat-icon> playlist_add_check</mat-icon>Products</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]=" ['/products/create' ] "><mat-icon> add</mat-icon>Create Products</a>
+      </li>
+      <li class="nav-item">
+
+        <a class="nav-link" [routerLink]=" ['/categories' ] "> <mat-icon>playlist_add_check</mat-icon> Categories</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]=" ['/categories/create' ] "><mat-icon> add</mat-icon>Create Categorie</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" ['/post-list' ] "><mat-icon> playlist_add_check</mat-icon>Posts</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" ['/post-create' ] "><mat-icon> post_add</mat-icon>Create Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" ['/videos' ] "><mat-icon> playlist_add_check</mat-icon>Videos</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" ['/video-create' ] "><mat-icon> post_add</mat-icon>Create Videos</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]=" ['/login' ] "><mat-icon> login</mat-icon>Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]=" ['/logout' ] "> <mat-icon> logout</mat-icon>Register</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>-->
+
+
+
+
+
+<!--<div style="height: 100vh;">
+  <mat-toolbar color="primary">
+    <span>Responsive Navigation</span>
+
+    <span class="example-spacer"></span>
+
+    <div fxShow="true" fxHide.lt-md="true">
+       The following menu items will be hidden on both SM and XS screen sizes
+      <a href="#" mat-button>Menu Item 1</a>
+      <a href="#" mat-button>Menu Item 2</a>
+      <a href="#" mat-button>Menu Item 3</a>
+      <a href="#" mat-button>Menu Item 4</a>
+      <a href="#" mat-button>Menu Item 5</a>
+      <a href="#" mat-button>Menu Item 6</a>
+    </div>
+
+    <div fxShow="true" fxHide.gt-sm="true">
+      <a href="#" (click)="sidenav.toggle()">Show Side Menu</a>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlexFill class="example-container">
+    <mat-sidenav #sidenav fxLayout="column">
+      <div fxLayout="column">
+        <a (click)="sidenav.toggle()" href="#" mat-button>Close</a>
+        <a href="#" mat-button>Menu Item 1</a>
+        <a href="#" mat-button>Menu Item 2</a>
+        <a href="#" mat-button>Menu Item 3</a>
+        <a href="#" mat-button>Menu Item 4</a>
+        <a href="#" mat-button>Menu Item 5</a>
+        <a href="#" mat-button>Menu Item 6</a>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content fxFlexFill>Main content</mat-sidenav-content>
+  </mat-sidenav-container>
+</div>-->

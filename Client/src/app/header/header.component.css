@@ -1,0 +1,36 @@
+/*.menu-spacer {
+  flex: 1 1 auto;
+}*/
+.navbar {
+    justify-content:space-between;
+}
+a {
+    padding-right:1rem;
+}
+mat-toobar .logo a{
+  color:white!important;
+}
+mat-toobar .logo a:hover{
+  background-color: transparent;
+}
+mat-toolbar div ul {
+  display: flex;
+  list-style: none;
+}
+mat-toolbar a:hover{
+  color:white;
+  background-color: gray;
+  text-decoration: none;
+}
+
+
+@media (max-width: 768px) {
+  mat-toolbar div ul {
+   /*display: block;*/
+
+  }
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    height: 85px;
+}
+
+}

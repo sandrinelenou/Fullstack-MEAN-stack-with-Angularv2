@@ -1,0 +1,28 @@
+<!--<p>categories works!</p>-->
+
+<table class="table col-md-8 offset-md-3">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col" colspan="3">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let categorie of categoryList ">
+      <th scope="row">{{categorie.id}}</th>
+      <td>{{categorie.name}}</td>
+      <td style="width: 70px;">
+        <!--(click)="edit(product.id)"-->
+        <a [routerLink]="['/categories/update/', categorie.id]" class="btn btn-info"><i class="fa fa-pencil-square-o " aria-hidden="true"></i></a>
+      </td>
+      <td style="width: 70px;">
+        <a class="btn btn-danger" [routerLink]="['/categories/delete', categorie.id]"> <i class="fa fa-trash " aria-hidden="true"></i></a><!--(click)="categorieService.delete(categorie.id)"-->
+      </td>
+      <td style="width: 70px;">
+        <a routerLink="/categories/{{categorie.id}}" class="btn btn-warning"> <i class="fa fa-eye " aria-hidden="true"></i></a>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

@@ -1,0 +1,112 @@
+{
+  "products": [
+    {
+      "id": 11,
+      "name": "Forever Aloe Vera Gel"
+    },
+    {
+      "id": 12,
+      "name": "Forever Freedom"
+    },
+    {
+      "id": 13,
+      "name": "Forever Bright Toothgel"
+    },
+    {
+      "id": 14,
+      "name": "Aloe Hand Soap"
+    },
+    {
+      "id": 15,
+      "name": "Aloe Ever-Shield Deodorant"
+    },
+    {
+      "id": 16,
+      "name": "Aloe First"
+    },
+    {
+      "id": 17,
+      "name": "Forever Hand Sanitizer"
+    },
+    {
+      "id": 18,
+      "name": "Absorbent-C"
+    },
+    {
+      "id": 19,
+      "name": "Forever Garlic Thym"
+    },
+    {
+      "id": 20,
+      "name": "Forever Vit"
+    },
+    {
+      "id": 21,
+      "name": "Aloe Propolis Creme"
+    },
+    {
+      "id": 22,
+      "name": "Aloe Vera Gelly"
+    },
+    {
+      "id": 23,
+      "name": "demo11"
+    },
+    {
+      "name": "rrrrr",
+      "id": 24
+    }
+  ],
+  "categories": [
+    {
+      "id": 2,
+      "name": "Igiene personale11"
+    },
+    {
+      "id": 3,
+      "name": "Integratore"
+    },
+    {
+      "id": 4,
+      "name": "Protezione della pelle"
+    },
+    {
+      "id": 6,
+      "name": "Nutrizione e Mantenersi in Forma"
+    },
+    {
+      "name": "Bevande",
+      "id": 10
+    },
+    {
+      "id": 14,
+      "name": "demo2448"
+    },
+    {
+      "id": 15,
+      "name": "333333rr"
+    },
+    {
+      "name": "demo33",
+      "id": 16
+    },
+    {
+      "name": "test34",
+      "id": 17
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Sandrine"
+    },
+    {
+      "id": 2,
+      "name": "Lenou"
+    },
+    {
+      "id": 3,
+      "name": "Noel"
+    }
+  ]
+}

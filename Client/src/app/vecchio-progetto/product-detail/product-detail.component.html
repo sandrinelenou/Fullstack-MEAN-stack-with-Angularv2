@@ -1,0 +1,30 @@
+<!--<p >Hello {{parentData}} parent data</p>-->
+
+<!--<div class="card text-center  offset-3" *ngIf="product">
+  <div class="card-header "><h3>Detail Product</h3></div>
+  <div class="card-body">
+    <h5>#id : {{product.id}} </h5>-->
+    <!--<h5>Name: {{product.name}} </h5>-->
+    <!--<label>name:</label>
+    <input type="text" placeholder="name" [ngModel]="product.name " cols="80" />
+  </div>
+  <div class="card-footer"><button class="btn btn-info mt-4" (click)=" goBack1()">Go  back</button></div>
+</div>-->
+
+<!--display detail product with directive *ngIf -->
+<!--div *ngIf="product" >
+  {{  pageTitle}}
+  <h3>{{product.name}} details!</h3>
+  <div><span>#id: </span>{{product.id}}</div>
+
+  <div>
+    <label for="product-name">Name:</label>
+    <input id="product-name" [(ngModel)]="product.name" placeholder="name" size="30" />
+  </div>
+  public getCategory(id: number): Observable<Categorie> {
+   const baseUrl =   '${this.categoriesUrl}/${id}';    // const heroesURL = `${this.heroesURL}?${term}`;
+    return this.http.get<Categorie>(this.baseUrl)   ;
+
+  }
+</!--div>-->
+<!--fine div if selectedProduct-->

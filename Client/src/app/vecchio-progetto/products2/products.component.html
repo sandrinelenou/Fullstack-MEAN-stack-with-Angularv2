@@ -1,0 +1,69 @@
+<h2 class="my-4">My products List</h2>
+
+<!--Adding more products with directive *ngFor and event (onClick) -->
+<div class="row">
+
+  <div class="col-4">
+    <ul class="products">
+      <li [routerLink]="['/products', product.id]" *ngFor="let product of  products" (click)="onSelect(product)">
+        <!--(click)="onSelect(product)"  [class.selected] = "isSelected(product)"-->
+        <span class="badge">{{product.id}}</span> {{product.name }}
+
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-8">
+
+
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th class="text-center"colspan="3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td style="width: 70px;">
+            <!--(click)="edit(product.id)"-->
+            <a [routerLink]="['/products', product.id]"><i class="fa fa-pencil-square-o btn btn-info" aria-hidden="true"></i></a>
+          </td>
+          <td style="width: 70px;">
+            <a [routerLink]="['/products', product.id]"> <i class="fa fa-trash btn btn-danger" aria-hidden="true"></i></a>
+          </td>
+          <td style="width: 70px;">
+            <a [routerLink]="['/products', product.id]"> <i class="fa fa-eye btn btn-warning" aria-hidden="true"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <!--<div>
+    <button (click)="goBack()">Back</button>
+  </div>-->
+    <!--questo codice era prima di generare product-detail
+    display detail product with directive *ngIf
+  <div *ngIf="selectedProduct">
+
+    <h3>{{selectedProduct.name}} details!</h3>
+    <div><span>#id: </span>{{selectedProduct.id}}</div>
+
+    <div>
+      <label for="product-name">Name:</label>
+      <input id="product-name" [(ngModel)]="selectedProduct.name" placeholder="name" />
+    </div>
+
+  </div> fine div if selectedProduct-->
+
+  </div>
+ 
+
+</div>
+
+

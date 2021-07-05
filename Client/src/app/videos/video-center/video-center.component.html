@@ -1,0 +1,75 @@
+
+<div class="jumbotron">
+  <h1 class="text-center">Video Player</h1>
+</div>
+<div class="row">
+
+  <div class="col-md-7" >
+    <div *ngIf="!hidenewVideo">
+
+      <h2>New Video</h2>
+
+      <form class="well" #form="ngForm" (ngSubmit)="onSubmitAddVideo(form.value)">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" name="title" ngModel required />
+        </div>
+
+        <div class="form-group">
+          <label>Url</label>
+          <input type="text" class="form-control" name="url" ngModel required />
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" class="form-control" name="description" ngModel />
+        </div>
+
+        <button type="submit" class="btn btn-success  ">Save</button>
+
+      </form>
+    </div>
+
+    <video-detail
+                   (deleteVideoEvent) = "onDeleteVideoEvent($event)"
+                  (updateVideoEvent) = "onUpdateVideoEvent($event)"
+                  *ngIf="selectedVideo && hidenewVideo"
+                  [video]="selectedVideo">
+
+    </video-detail>
+  </div>
+
+  <div class="col-md-2"></div>
+
+  <div class="col-md-3">
+    <button (click)="newVideo()" type="button" class="btn btn-success btn-block mb-4">+ New Video</button>
+    <video-list (SelectedVideo)="onSelectVideo($event)" [videos]="videos"></video-list>   <!--capture this event-->
+  </div>
+</div>
+
+
+
+
+<!--Video Center => input => VideoList =>Display list
+   Video List => output => videoCenter => Capture Selected Video
+   Video Center => input => Video detail => Display Details
+
+
+  when we click in the particular video we call the onSelect method passing him the particular video
+  In the video list component we have the onSelect method.
+
+  when this particular method is call launch an event which is call selectedVideo an pass
+  it the video which was click ((click)="onSelect(video)")
+
+  In the video.center.html we capture the select video  event and call the handler
+  onSelectedVideo passing it $event ((SelectedVideo)="onSelectVideo($event)").this $event
+  is going to give us access to the video that was passed
+
+  In video-center.ts we get the video from the event captured (onSelectVideo(video: Video)) an assign it to the
+  selectedVideo property (this.selectedVideo = video;).now we have the video in video center by click
+  we passed it as an input to the video detail component <video-detail  [video]="selectedVideo"></video-detail>
+
+  we need to specify that the video details is display only went we selected the video by click
+  <video-detail *ngIf="selectedVideo" ></video-detail>
+  video-center.ts
+ -->

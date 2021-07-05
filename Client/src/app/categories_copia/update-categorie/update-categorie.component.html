@@ -1,0 +1,22 @@
+<!--<p>update-categorie works!</p>-->
+<form #UpdateCategorieForm="ngForm" (ngSubmit)="updateCategorie(UpdateCategorieForm)">
+
+  <div class="card text-center  offset-4" *ngIf="categorieDetails">
+    <div class="card-header "><h3>Update Categorie</h3></div>
+    <div class="card-body">
+      <h5>#id : {{categorieDetails.id}} </h5>
+      <h5>Name: {{categorieDetails.name}} </h5>
+      <label>name:</label>
+      <input type="text" placeholder="name" name= "name" [(ngModel)]="categorieDetails.name " cols="90" />
+    </div>
+
+    <div class="card-footer">
+      <button type="submit" class="btn btn-success mt-4 float-left">Update Categorie</button><!--(click)="updateCategorie()"-->
+      <!--<button type="submit" class="btn btn-danger mt-4 float-center">Delete</button>--><!--(click)="deleteCategorie(categorieDetail.id)-->
+      <button class="btn btn-info mt-4 float-right" (click)="goBack()">Go  back</button>
+    </div>
+
+  </div>
+</form>
+
+<!--{{UpdateCategorieForm.value | json}}-->

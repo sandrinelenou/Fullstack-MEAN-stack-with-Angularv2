@@ -1,0 +1,28 @@
+<div class="row mb-5">
+  <h2 class="col-6">Post List</h2>
+  <div class="col-3"></div>
+  <div class="col-3 "> <a   [routerLink]=" ['/post-create' ] " mat-raised-button  color="accent"> New Post</a>&nbsp;</div>
+</div>
+
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading" >
+  <mat-expansion-panel *ngFor="let post of posts">
+    <mat-expansion-panel-header>
+      {{post.title}}
+    </mat-expansion-panel-header>
+    <p> {{post.content}}</p>
+    <mat-action-row>
+      <button mat-raised-button color="primary" [routerLink]="['/edit', post.id]">EDIT</button>
+      <button mat-raised-button color="warn" (click)="onDelete(post.id)">DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-paginator
+               [length]="totalPosts"
+               [pageSize]="postsPerPage"
+               [pageSizeOptions]="pageSizeOptions"
+               (page)="onChangedPage($event)"
+               >
+
+</mat-paginator>
+<p class="info-text mat-body-1 text-center" *ngIf="posts.length <= 0 && !isLoading ">No posts added yet!</p>
