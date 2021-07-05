@@ -18,6 +18,7 @@ export class ProductsFormComponent implements OnInit {
   public pageTitle: string = '';
   //public productDetails: Product  ;
   public productDetails: Product = new Product();
+  public productObject: Product[] = [];
 
   constructor(
     private productService: ProductService,
@@ -51,26 +52,28 @@ export class ProductsFormComponent implements OnInit {
 
   private getProductData() {
     let context = this;
-    context.productService.getProductById(context.productIdFromRoute).subscribe(productdata => {
-      context.productDetails = productdata;
+    context.productService.getProductById(context.productIdFromRoute).subscribe((productdata: any) => {
+      context.productDetails = productdata.data;
       console.log(context.productDetails);
     });
   }
 
+
   private viewCase() {
     let context = this;
-    context.pageTitle = 'View prodotti';
+    context.pageTitle = 'View prodotto';
     context.getProductData();
   }
 
   private addCase() {
     let context = this;
-    context.pageTitle = 'Crea Prodotti';
+    context.pageTitle = 'Crea Prodotto';
+
   }
 
   private editCase() {
     let context = this;
-    context.pageTitle = 'Modifica prodotti';
+    context.pageTitle = 'Modifica prodotto';
     context.getProductData();
   }
 
@@ -94,6 +97,7 @@ export class ProductsFormComponent implements OnInit {
         context.router.navigate(['/products']);
       });
     } else {
+
       this.productService.createProduct(productObject).subscribe(data => {
         context.router.navigate(['/products']);
       });

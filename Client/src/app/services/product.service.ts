@@ -78,6 +78,7 @@ export class ProductService {
   public deleteProduct(productId: number): Observable<Product> {
     let context = this;
     return context.http.delete<Product>(context.api + '/delete/' + productId);
+
   }
   public getProductUpdateListener() {
     return this.productsUpdated.asObservable();

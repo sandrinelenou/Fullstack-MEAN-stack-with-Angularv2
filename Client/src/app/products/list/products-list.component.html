@@ -1,36 +1,38 @@
 
 <div class="row mb-5">
-  <h2 class="col-6">My products List</h2>
+  <h2 class="col-6">Products</h2>
   <div class="col-3"></div>
 
   <div><a  routerLink="/products/create"  class="btn btn-secondary">New Product</a></div>
 </div>
 <div class="row">
-
-  <div class="col-4">
+  <!--<div class="col-1">
     <ul class="products">
       <li [routerLink]="['/products', product.id]" *ngFor="let product of  productList">
               <span class="badge">{{product.id}}</span> {{product.name }}
       </li>
     </ul>
-  </div>
+  </div>-->
 
-  <div class="col-8">
+  <div class="col-11">
 
 
 
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
           <th class="text-center" colspan="3">Action</th>
 
       </thead>
-      <tbody *ngIf="products.length > 0">
-        <tr *ngFor="let product of  products">
-          <td>{{product.id}}</td>
+      <tbody *ngIf="productList.length > 0">
+        <tr *ngFor="let product of  productList">
           <td>{{product.name}}</td>
+          <td>{{product.description |slice:0: 170 }}
+            <a [routerLink]="['/products/view-product/', product.id]">{{product.description.length > 170 ? '...Read More' : ''}}</a></td>
+          <td>€ {{product.price}}</td>
           <td style="width: 70px;">
             <a [routerLink]="['/products/edit-product/', product.id]" ><i class="fa fa-pencil-square-o btn btn-info" aria-hidden="true"></i></a>
           </td>
@@ -43,6 +45,6 @@
         </tr>
       </tbody>
     </table>
-    <p class="btn btn-warning" *ngIf="products.length <= 0">No Products added yet!</p>
+    <p class="btn btn-warning" *ngIf="productList.length <= 0">No Products added yet!</p>
   </div>
 </div>

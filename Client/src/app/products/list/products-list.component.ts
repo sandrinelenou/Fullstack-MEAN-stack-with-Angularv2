@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 
@@ -16,7 +16,8 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private _activateRoute: ActivatedRoute
+    private _activateRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
 
@@ -27,7 +28,7 @@ export class ProductsListComponent implements OnInit {
     this.productsSub = this.productService.getProductUpdateListener()
       .subscribe((products: Product[]) => {
        // this.isLoading = false;
-        this.products = products;
+        this.productList = products;
       });
   }
 
@@ -35,7 +36,9 @@ export class ProductsListComponent implements OnInit {
     let context = this;
     context.productService.deleteProduct(productId).subscribe(productData => {
       console.log(productData);
+      context.router.navigate(['/products']);
     });
+    context.router.navigate(['/products']);
 
   }
 
