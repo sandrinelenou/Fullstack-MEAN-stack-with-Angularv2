@@ -51,6 +51,7 @@ export class ProductService {
       }))
       .subscribe((transformedProduct) => {
         this.products = transformedProduct;
+        console.log(transformedProduct);
         this.productsUpdated.next([...this.products]);   // We also need to update our subscribe code. We just replaced the postData with transformedPost and assigned it to the this.postsa che cosa serve questa ? per fare andare avanti il progetto? come next()?
       });
 

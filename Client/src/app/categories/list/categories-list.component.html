@@ -1,7 +1,39 @@
-<div class="row mb-5">
+<div><a  routerLink="/categories/create"  class="btn btn-secondary">New Categorie</a></div>
+ <div class="card row card-featured my-3 p-2"   *ngFor="let categorie of categories;let i=index">
+
+  <h3 class="font-weight-dark">
+     <a [routerLink]="[categorie.id]"> {{ categorie.title }}</a>
+  </h3>
+
+ <div class="desc">
+    <p>{{categorie.content |slice:0: 170 }}
+     <a [routerLink]="[categorie.id]">{{categorie.content.length > 170 ? '...Read More' : ''}}</a></p>
+</div>
+
+ <span class="delete" (click)="removeCategorie(categorie.id)">
+    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+</span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="row mb-5">
   <h2 class="col-6">Categories</h2>
   <div class="col-3"></div>
-  <!--<div><a mat-button routerLink="/categories/create" mat-raised-button  color="accent">New Category</a></div>-->
+
   <div><a  routerLink="/categories/create"  class="btn btn-secondary">New Category</a></div>
 </div>
 
@@ -28,4 +60,4 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table>-->

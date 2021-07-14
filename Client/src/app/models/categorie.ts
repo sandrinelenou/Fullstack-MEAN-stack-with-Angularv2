@@ -1,4 +1,5 @@
-export class Categorie { 
+export class Categorie {
   id: any ;
-  name: string | undefined ;
+  title:any;
+  content: any;
 }
