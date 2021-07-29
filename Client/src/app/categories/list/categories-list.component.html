@@ -1,28 +1,27 @@
-<div><a  routerLink="/categories/create"  class="btn btn-secondary">New Categorie</a></div>
- <div class="card row card-featured my-3 p-2"   *ngFor="let categorie of categories;let i=index">
+<div class="container">
+  <h1>Angular CRUD Example - ItSolutionStuff.com</h1>
 
-  <h3 class="font-weight-dark">
-     <a [routerLink]="[categorie.id]"> {{ categorie.title }}</a>
-  </h3>
+  <a href="#" routerLink="/categories/create/" class="btn btn-success my-5">Create New Categorie</a>
 
- <div class="desc">
-    <p>{{categorie.content |slice:0: 170 }}
-     <a [routerLink]="[categorie.id]">{{categorie.content.length > 170 ? '...Read More' : ''}}</a></p>
+  <table class="table table-bordered py-5">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th width="220px">Action</th>
+    </tr>
+    <tr *ngFor="let categorie of categories">
+      <td>{{ categorie._id }}</td>
+      <td>{{ categorie.title }}</td>
+      <td>{{ categorie.content }}</td>
+      <td>
+        <a href="#" [routerLink]="['/view-categorie/', categorie._d]" class="btn btn-info">View </a>
+        <a href="#" [routerLink]="['/edit-categorie/', categorie._id]" class="btn btn-primary">Edit </a>
+        <button type="button" (click)="removeCategorie(categorie._id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </table>
 </div>
-
- <span class="delete" (click)="removeCategorie(categorie.id)">
-    <button type="button" class="btn btn-danger btn-sm">Delete</button>
-</span>
-</div>
-
-
-
-
-
-
-
-
-
 
 
 

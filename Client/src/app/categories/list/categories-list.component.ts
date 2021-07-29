@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Categorie } from '../../models/categorie';
 import { CategorieService } from '../../services/categorie.service';
 
+
 @Component({
   selector: 'app-categories-list',
   templateUrl: './categories-list.component.html',
@@ -11,24 +12,28 @@ import { CategorieService } from '../../services/categorie.service';
 })
 export class CategoriesListComponent implements OnInit {
 
-  categories: Categorie[] = [];
-  private categoriesSub: Subscription | undefined;
+  public categories: any ;
+  public isLoading: boolean = false;
 
-constructor(private ps: CategorieService) { }
+constructor(
+  private categorieService: CategorieService,
+  private router: Router) { }
 
  ngOnInit(): void {
-  this.ps.getCategories().subscribe(data => {
-    this.categories = data;
+  this.isLoading = true;
+  this.categorieService.getCategories().subscribe((res: any) => {
+    this.categories =res.data;
+    console.log(this.categories);
   });
-  /*this.categoriesSub = this.ps.getCatgorieUpdateListener()
-      .subscribe((categories: Categorie[]) => {
-       // this.isLoading = false;
-        this.categories = categories;
-      });*/
 }
 
  removeCategorie(categorieId: string) {
-    this.ps.deleteCategorie(categorieId);
+    this.categorieService.deleteCategorie(categorieId).subscribe(res => {
+     //this.categories = this.categories.filter((item :any) => item.id !== categorieId);
+      this.router.navigate(['/categories']);
+         console.log('categorie deleted successfully!');
+
+    })
  }
 }
 

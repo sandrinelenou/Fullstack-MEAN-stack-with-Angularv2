@@ -11,19 +11,19 @@ import { CategoriesDataFormComponent } from './form/categories-form.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,   
+    HttpClientModule,
     RouterModule.forChild([
       {
-        path: '',       
+        path: '',
         component: CategoriesListComponent
       },
       {
-        path: 'create',       
+        path: 'create',
         component: CategoriesDataFormComponent,
         data: { mode: 'ADD'}
       },
       {
-        path: 'edit-categorie/:id',      
+        path: 'edit-categorie/:id',
         component: CategoriesDataFormComponent,
         data: { mode: 'EDIT' }
       },
@@ -31,15 +31,15 @@ import { CategoriesDataFormComponent } from './form/categories-form.component';
         path: 'view-categorie/:id',
         component: CategoriesDataFormComponent,
         data: { mode: 'DETAIL' }
-      }      
-    ])   
+      }
+    ])
   ],
-  providers: [   
+  providers: [
   ],
   declarations: [
     CategoriesListComponent, CategoriesDataFormComponent
   ],
-  exports: [    
+  exports: [
   ]
 })
 export class CategoriesModule { }

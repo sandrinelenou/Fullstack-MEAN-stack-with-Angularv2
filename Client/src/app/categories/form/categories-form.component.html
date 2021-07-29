@@ -1,35 +1,44 @@
-<h3 class=" text-center pb-4">Create new Categorie</h3>
-<form [formGroup]="form" (submit)="onSavePost()">
-  <div class="form-group">
-    <input
-      type="text"
-      formControlName="title"
-      class="form-control"
-      placeholder="Categorie title"
-    />
-    <!--<span
-      class="text-danger"
-      *ngIf="form.get('title').invalid && form.get('title').touched"
-      >Please enter a post title.</span >-->
-  </div>
+<div class="container">
+  <h1>Create New Categorie</h1>
 
-  <div class="form-group">
-    <textarea
-      class="form-control"
-      rows="4"
-      formControlName="content"
-      placeholder="Categorie content"
-    ></textarea>
-    <!--<span
-      class="text-danger"
-      *ngIf="form.get('content').invalid && form.get('content').touched"
-      >Please enter a post title.</span
-    >-->
-  </div>
-  <button class="btn btn-primary" [disabled]="form.invalid" type="submit">
-    Save Categorie
-  </button>
-</form>
+  <a href="#" routerLink="/categories" class="btn btn-primary">Back</a>
+
+  <form [formGroup]="form" (ngSubmit)="onSavePost()">
+
+      <div class="form-group">
+          <label for="title">Title:</label>
+          <input
+              formControlName="title"
+              [(ngModel)]="categorieDetails.title"
+              id="title"
+              type="text"
+              placeholder="Enter title"
+              class="form-control">
+          <div *ngIf="form.controls.title.touched && form.controls.title.invalid" class="alert alert-danger">
+              <div *ngIf="form.controls.title.errors!.required">Title is required.</div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="body">content</label>
+          <textarea
+              formControlName="content"
+              [(ngModel)]="categorieDetails.content"
+              id="content"
+              type="text"
+              placeholder="Enter content"
+              class="form-control">
+          </textarea>
+          <div *ngIf="form.controls.content.touched && form.controls.content.invalid" class="alert alert-danger">
+              <div *ngIf="form.controls.content.errors!.required">content is required.</div>
+          </div>
+      </div>
+
+      <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>
+
+
 
 
 

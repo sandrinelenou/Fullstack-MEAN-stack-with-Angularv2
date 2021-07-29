@@ -6,23 +6,44 @@ const router= express.Router();
 //Create categorie
 router.post("/create", (req,res,next) => {
     const categorie = new Categorie({
-        title:req.body.title,
-        content:req.body.content
+        title: req.body.title,
+        content: req.body.content
     });
-    categorie.save().then(createdResult => {
+    categorie.save().
+    then(createdResult => {
         console.log(createdResult);
-        if (!createdResult) {
-          res.status(200).json({
-            code: 1,
-            messaggio: "Categorie was not created "
-            //categorieId: createdResult._id
+        if (createdResult) {
+          res.status(201).json({
+            code: 0,
+            messaggio: "Categorie added succesfully ",
+            categorie: createdResult  //categorieId: createdResult._id            
           });
         }
     }).catch(e => {
         console.log(e);
     });
 });
-
+/*
+router.post("/create", (req,res,next) => {
+    const post = new Post({
+        title: req.body.title,
+        content:req.body.content,
+    });
+    post.save().
+    then(post => {
+        if(post){
+            res.status(201).json({
+                code: 0 ,
+                message: "Post added succesfully",
+                post: post                  //{...post, id: post._id }
+            })
+        }
+    }).
+    catch(err =>  {
+        console.log(e);
+    });
+});
+*/
 //Read categorie
 router.get("/list",(req, res,next) => {
     Categorie.find().then(categorie => {
@@ -30,7 +51,7 @@ router.get("/list",(req, res,next) => {
             res.status(200).json({
                 code:0,
                 message:"Categorie fetched successfully",
-                categories: categorie
+                data: categorie
             })
         }
     }).catch(e => {
