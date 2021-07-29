@@ -23,27 +23,6 @@ router.post("/create", (req,res,next) => {
         console.log(e);
     });
 });
-/*
-router.post("/create", (req,res,next) => {
-    const post = new Post({
-        title: req.body.title,
-        content:req.body.content,
-    });
-    post.save().
-    then(post => {
-        if(post){
-            res.status(201).json({
-                code: 0 ,
-                message: "Post added succesfully",
-                post: post                  //{...post, id: post._id }
-            })
-        }
-    }).
-    catch(err =>  {
-        console.log(e);
-    });
-});
-*/
 //Read categorie
 router.get("/list",(req, res,next) => {
     Categorie.find().then(categorie => {
