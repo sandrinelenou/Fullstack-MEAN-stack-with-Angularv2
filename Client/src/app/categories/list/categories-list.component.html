@@ -11,12 +11,12 @@
       <th width="220px">Action</th>
     </tr>
     <tr *ngFor="let categorie of categories">
-      <td>{{ categorie._id }}</td>
+      <td>{{ categorie.id }}</td>
       <td>{{ categorie.title }}</td>
       <td>{{ categorie.content }}</td>
       <td>
-        <a href="#" [routerLink]="['/view-categorie/', categorie._d]" class="btn btn-info">View </a>
-        <a href="#" [routerLink]="['/edit-categorie/', categorie._id]" class="btn btn-primary">Edit </a>
+        <a href="#"  [routerLink]="['/categories/view-categorie/', categorie._id]"  class="btn btn-info">View </a>
+        <a href="#" [routerLink]="['/categories/edit-categorie', categorie._id]"  class="btn btn-primary">Edit </a>
         <button type="button" (click)="removeCategorie(categorie._id)" class="btn btn-danger">Delete</button>
       </td>
     </tr>

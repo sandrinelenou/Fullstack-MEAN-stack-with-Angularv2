@@ -13,33 +13,17 @@ import { CategoriesDataFormComponent } from './form/categories-form.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forChild([
-      {
-        path: '',
-        component: CategoriesListComponent
-      },
-      {
-        path: 'create',
-        component: CategoriesDataFormComponent,
-        data: { mode: 'ADD'}
-      },
-      {
-        path: 'edit-categorie/:id',
-        component: CategoriesDataFormComponent,
-        data: { mode: 'EDIT' }
-      },
-      {
-        path: 'view-categorie/:id',
-        component: CategoriesDataFormComponent,
-        data: { mode: 'DETAIL' }
-      }
+      { path: '',  component: CategoriesListComponent  },
+      { path: 'create', component: CategoriesDataFormComponent, data: { mode: 'ADD'}     },
+      { path: 'edit-categorie/:id',component: CategoriesDataFormComponent, data: { mode: 'EDIT' }  },
+      { path: 'view-categorie/:id',component: CategoriesDataFormComponent, data: { mode: 'VIEW' }  }
     ])
   ],
-  providers: [
-  ],
+  providers: [  ],
   declarations: [
-    CategoriesListComponent, CategoriesDataFormComponent
+    CategoriesListComponent,
+     CategoriesDataFormComponent
   ],
-  exports: [
-  ]
+  exports: [  ]
 })
 export class CategoriesModule { }

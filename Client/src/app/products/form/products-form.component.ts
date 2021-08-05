@@ -16,7 +16,7 @@ export class ProductsFormComponent implements OnInit {
   public mode: string | undefined;
   private productIdFromRoute: any;
   public pageTitle: string = '';
-  //public productDetails: Product  ;
+  public product!: Product  ;
   public productDetails: Product = new Product();
   public productObject: Product[] = [];
 
@@ -49,6 +49,13 @@ export class ProductsFormComponent implements OnInit {
     }
 
   }
+  private createProductData() {
+    let context = this;
+    context.productService.createProduct(context.product).subscribe(res => {
+      console.log(context.product);
+    });
+
+  }
 
   private getProductData() {
     let context = this;
@@ -68,7 +75,7 @@ export class ProductsFormComponent implements OnInit {
   private addCase() {
     let context = this;
     context.pageTitle = 'Crea Prodotto';
-
+    context.createProductData();
   }
 
   private editCase() {

@@ -75,9 +75,13 @@ export class ProductService {
     return context.http.put<Product>(context.api + '/update/' + productId, JSON.stringify(product), context.httpOptions);
 
   }
-  public deleteProduct(productId: number): Observable<Product> {
+  public deleteProduct(productId: number) {
     let context = this;
-    return context.http.delete<Product>(context.api + '/delete/' + productId);
+    return context.http.delete<Product>(context.api + '/delete/' + productId).subscribe(() => {
+      const updatedProducts = this.products.filter(product => product.id !== productId); //For live updating,  La funzione filter () ci permette di restituire solo un sottoinsieme di quell'array di post. Passeremo la funzione come argomento alla funzione di filtro. Questa funzione verrà eseguita per ogni post nell'array. Se restituisce true, l'elemento post verrà mantenuto, ma se restituisce false, l'elemento non farà parte del nuovo array di post filtrato che abbiamo memorizzato nei post aggiornati.
+      this.products = updatedProducts;   //Ora, la nostra interfaccia utente frontend verrà aggiornata quando elimineremo un post
+      this.productsUpdated.next([...this.products]);   //send the copy of post, Ora, dobbiamo anche comunicare alla nostra app questo aggiornamento alla nostra app
+    });
 
   }
   public getProductUpdateListener() {

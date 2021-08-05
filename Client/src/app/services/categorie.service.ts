@@ -11,9 +11,8 @@ import { Router } from '@angular/router';
 })
 export class CategorieService {
 
-    private BACKEND_URL = "http://localhost:3000/api/categorie";
-     categoriesUrl : string = 'http://localhost:3000/api/categorie/list';
-    public categories: Categorie[] = [];
+    private BACKEND_URL = "http://localhost:3000/api/categorie";   
+  public categories: any;    //public categories: Categorie[] = [];
     private categoriesUpdated = new Subject<Categorie[]>();
 
      httpOptions = {
@@ -27,10 +26,10 @@ export class CategorieService {
     getCategories(): Observable<Categorie[]>{
       return this.http.get<Categorie[]>(this.BACKEND_URL + '/list')
       .pipe(catchError(this.errorHandler));
-    }
+    }  
 
     getCategorie(id: any): Observable<Categorie> {
-      return this.http.get<Categorie>(this.BACKEND_URL  + id)
+      return this.http.get<Categorie>(this.BACKEND_URL +'/' + id)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -50,8 +49,18 @@ export class CategorieService {
 
   deleteCategorie(categorieId: string) : Observable<Categorie>{
     return this.http.delete<Categorie>(this.BACKEND_URL + '/delete/' + categorieId,this.httpOptions)
-    .pipe(catchError(this.errorHandler))
+    .pipe(catchError(this.errorHandler));
   }
+  /*deleteCategorie(categorieId: string) {
+    return this.http.delete<Categorie>(this.BACKEND_URL + '/delete/' + categorieId,this.httpOptions).subscribe(() => {
+    this.categoriesUpdated = this.categories.filter((categorie :any) => categorie.id !== categorieId);   //For live updating,  La funzione filter () ci permette di restituire solo un sottoinsieme di quell'array di post. Passeremo la funzione come argomento alla funzione di filtro. Questa funzione verrà eseguita per ogni post nell'array. Se restituisce true, l'elemento post verrà mantenuto, ma se restituisce false, l'elemento non farà parte del nuovo array di post filtrato che abbiamo memorizzato nei post aggiornati.
+    this.categories = this.categoriesUpdated;   //Ora, la nostra interfaccia utente frontend verrà aggiornata quando elimineremo un post
+    this.categoriesUpdated.next([...this.categories]);   //send the copy of post, Ora, dobbiamo anche comunicare alla nostra app questo aggiornamento alla nostra app
+    //this.router.navigate(["/categories"]);
+     console.log('deleted successfully!');
+
+   });
+  }*/
 
 
   errorHandler(error:any) {
@@ -67,3 +76,8 @@ export class CategorieService {
 
 
 }
+
+
+/*
+ Observable consentono ai moduli(categorie) di fare una richiesta asynchrono e al termine della richiesta ,
+ subscribe si inscribe alle notifiche della richiesta quando la richiesta funziona */

@@ -35,7 +35,6 @@ export class ProductsListComponent implements OnInit {
   public deleteCase(productId: number) {
     let context = this;
     context.productService.deleteProduct(productId);
-    this.router.navigate(["/categories"]);
   }
 
 }

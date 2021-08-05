@@ -1,5 +1,5 @@
-export class Categorie {
-  id: any ;
-  title:any;
-  content: any;
+export interface Categorie {
+  id: any;
+  title: string;
+  content: string;
 }

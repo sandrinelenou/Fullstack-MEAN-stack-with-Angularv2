@@ -36,6 +36,10 @@ export class PostsService {
 
   }
 
+  //per aggiornare i posts fare subscribe di nuovo in list component????
+  public getPostUpdateListener() {
+  return this.postsUpdated.asObservable();
+}
   public getPost(id: string) {
     return this.http.get<{ _id: string, title: string, content: string }>("http://localhost:3000/api/post/" + id);
 
@@ -78,10 +82,7 @@ export class PostsService {
     });
   }
 
-  //????
-  public getPostUpdateListener() {
-    return this.postsUpdated.asObservable();
-  }
+  
 
 
 

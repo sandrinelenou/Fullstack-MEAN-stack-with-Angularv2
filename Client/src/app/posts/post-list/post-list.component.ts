@@ -17,6 +17,7 @@ export class PostListComponent implements OnInit, OnDestroy {
    posts: Post[] = [];   //per recuperare i dati inseriti dall'input
   private postsSub: Subscription | undefined;
   public isLoading: Boolean = false;
+
   totalPosts = 10;              //The length of the total number of items that are being paginated. Defaulted to 0.
   postsPerPage = 2;               //pageSize,Number of items to display on a page
   pageSizeOptions = [1, 2, 5, 10];              //The set of provided page size options to display to the user
@@ -33,11 +34,6 @@ export class PostListComponent implements OnInit, OnDestroy {
       });
   }
 
-  onChangedPage(pageData: PageEvent) {
-    console.log(pageData);
-  }
-
-
   onDelete(postId: string) {
     this.postsService.deletePost(postId);
   }
@@ -47,6 +43,8 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub?.unsubscribe();   //update array on the frontend after deleted
   }
 
-
+  onChangedPage(pageData: PageEvent) {
+    console.log(pageData);
+  }
 
 }

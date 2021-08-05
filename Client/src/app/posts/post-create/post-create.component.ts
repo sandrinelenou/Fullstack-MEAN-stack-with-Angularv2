@@ -20,7 +20,7 @@ export class PostCreateComponent implements OnInit {
   public isLoading: Boolean = false;
 
   //image store
-  form: any;            //form: FormGroup | undefined;
+  public form!: FormGroup;            //form: FormGroup | undefined;
 
   constructor(private postsService: PostsService, public route: ActivatedRoute) { }  
    

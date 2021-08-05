@@ -4,9 +4,13 @@
     "\\Client",
     "\\Client\\src",
     "\\Client\\src\\app",
-    "\\Client\\src\\app\\products",
-    "\\Client\\src\\app\\products\\list"
+    "\\Client\\src\\app\\categories",
+    "\\Client\\src\\app\\categories\\form",
+    "\\Client\\src\\app\\posts",
+    "\\Client\\src\\app\\posts\\post-create",
+    "\\Client\\src\\app\\posts\\post-list",
+    "\\Client\\src\\app\\services"
   ],
-  "SelectedNode": "\\Client\\src\\app\\products\\list\\products-list.component.html",
+  "SelectedNode": "\\Client\\src\\app\\posts\\post-list\\post-list.component.ts",
   "PreviewInSolutionExplorer": false
 }

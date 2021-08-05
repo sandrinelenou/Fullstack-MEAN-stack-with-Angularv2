@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: ProductsListComponent },
-      { path: 'create', component: ProductsFormComponent, data: { param: 'ADD' } },
+      { path: 'create', component: ProductsFormComponent, data: { mode: 'ADD' } },
       { path: 'edit-product/:id', component: ProductsFormComponent, data: { mode: 'EDIT' } },
       { path: 'view-product/:id', component: ProductsFormComponent, data: { mode: 'VIEW' } }
     ])

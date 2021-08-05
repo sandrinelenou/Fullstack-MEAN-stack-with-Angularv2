@@ -38,6 +38,29 @@ router.get("/list",(req, res,next) => {
     });
 });
 
+//get a single categorie good
+router.get("/:id", (req, res, next) => {
+    try {
+        Categorie.findById(req.params.id)
+            .exec(function (err, categorie) {
+                if (err) {
+                    res.status(200).json({
+                        code: 1,
+                        message: 'Error retrieving categorie'
+                    });
+                } else {
+                    res.status(200).json({
+                        code: 0,
+                        message: 'Data retrived',
+                        data: categorie
+                    });
+                }
+            });
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 //update categorie
 router.put("/update/:id", (req,res,next) => {
     const categorie = new Categorie({

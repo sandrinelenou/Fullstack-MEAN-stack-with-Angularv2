@@ -1,7 +1,11 @@
 <!--<p>products-form works!</p>-->
 <form #addProductForm="ngForm">
   <div class="card offset-3  mt-5">
-    <div class="card-header"><h3>{{ pageTitle }}</h3></div>
+    <div class="card-header">
+      <h2>{{ pageTitle }}</h2>
+      <!--<h1 *ngIf="mode === 'ADD'">Add Product</h1>
+  <h1 *ngIf="mode === 'EDIT'">Edit Product</h1>-->
+    </div>
     <div class="card-body">
       <div *ngIf="mode=='VIEW'">
        <!--<h5>#id : {{productDetails.id}} </h5>-->
@@ -17,7 +21,7 @@
     </div>
     <div class="card-footer">
       <button type="button" class="btn btn-info" (click)="submitProduct()" *ngIf="mode != 'VIEW'">Invia </button>&nbsp;&nbsp;
-      <button class="btn btn-dark" (click)="goBack()" *ngIf="mode == 'VIEW'">Go back</button>
+      <button class="btn btn-dark" (click)="goBack()" *ngIf="mode == 'VIEW' ">Go back</button>
     </div>
   </div>
 </form>
