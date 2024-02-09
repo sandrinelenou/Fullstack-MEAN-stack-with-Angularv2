@@ -13,7 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { ProductService } from './services/product.service';
 import { CategorieService } from './services/categorie.service';
-import { PostsService } from './posts/posts.service';
+import { PostsService } from './services/posts.service';
 
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -64,8 +64,8 @@ import { SignupComponent } from './authentication/login/signup/signup.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule,
     ReactiveFormsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,

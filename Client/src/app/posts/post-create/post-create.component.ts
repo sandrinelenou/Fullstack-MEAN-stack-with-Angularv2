@@ -3,7 +3,7 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
-import { PostsService } from '../posts.service';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-post-create',
@@ -22,8 +22,8 @@ export class PostCreateComponent implements OnInit {
   //image store
   public form!: FormGroup;            //form: FormGroup | undefined;
 
-  constructor(private postsService: PostsService, public route: ActivatedRoute) { }  
-   
+  constructor(private postsService: PostsService, public route: ActivatedRoute) { }
+
   ngOnInit(): void {
     this.form = new FormGroup({
       title: new FormControl(null, { validators: [Validators.required, Validators.minLength(3)] }),
@@ -34,7 +34,7 @@ export class PostCreateComponent implements OnInit {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
-        
+
         this.isLoading = true;            //loading spinner initial
         this.postsService.getPost(this.postId).subscribe((postData:any) => {
           this.isLoading = false;
@@ -42,9 +42,9 @@ export class PostCreateComponent implements OnInit {
           this.form.setValue(
             {
              title: this.post.title,
-              content: this.post.content             
+              content: this.post.content
             });         // allow us to ovveride the value form your form control when we want to update
-        });     
+        });
       } else {
         this.mode = 'create';
         this.postId = null;
@@ -55,7 +55,7 @@ export class PostCreateComponent implements OnInit {
 
 
 
-  //Creeremo un nuovo post creando un nuovo oggetto JavaScript, cioè oggetto costante utilizzando la proprietà title e content. Useremo questa parola chiave per memorizzare i dati del titolo e del contenuto 
+  //Creeremo un nuovo post creando un nuovo oggetto JavaScript, cioè oggetto costante utilizzando la proprietà title e content. Useremo questa parola chiave per memorizzare i dati del titolo e del contenuto
 
 
 
@@ -86,13 +86,13 @@ export class PostCreateComponent implements OnInit {
     }    //const post: Post = { id:form.value .id,title: form.value.title, content: form.value.content };
     this.isLoading = true;
     if (this.mode === 'create') {
-      this.postsService.addPost(this.form.value.title, this.form.value.content);     
+      this.postsService.addPost(this.form.value.title, this.form.value.content);
     } else {
       this.postsService.updatePost(this.postId, this.form.value.title, this.form.value.content);
       this.isLoading = false;
     }
-    this.form.reset();    //form.resetForm() pulisce la form 
+    this.form.reset();    //form.resetForm() pulisce la form
   }
   */
-  
+
 

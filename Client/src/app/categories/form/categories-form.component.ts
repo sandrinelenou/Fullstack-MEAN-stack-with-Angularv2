@@ -17,7 +17,7 @@ export class CategoriesDataFormComponent implements OnInit {
   public id: any;
   public isLoading = false;
   public isSubmitted = false;
-  public categorie!: Categorie; 
+  public categorie!: Categorie;
   public mode = "create";   //default
   public param!: String;
   private categoryId: any;     //id from route public id!: string;
@@ -25,20 +25,20 @@ export class CategoriesDataFormComponent implements OnInit {
   public pageTitle!: String;
     title: any;
     content: any;
-  
+
 
 
   constructor(
      private categorieService: CategorieService,
      public route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+   // private fb: FormBuilder
      //private formBuilder: FormBuilder
   ) { }
-  
+
 
   ngOnInit(): void {
-    
+
     let context = this;
     switch (this.mode) {
       case 'ADD':
@@ -75,8 +75,8 @@ export class CategoriesDataFormComponent implements OnInit {
       } else {
         this.mode = "ADD";
         this.categoryId = null;
-      }    
-              
+      }
+
   });
 
 
@@ -107,7 +107,7 @@ export class CategoriesDataFormComponent implements OnInit {
     } else {
       console.log(this.form.value);
       this.updateCategorie();
-    } 
+    }
     this.form.reset();
   }
 
@@ -124,7 +124,7 @@ export class CategoriesDataFormComponent implements OnInit {
         context.categorieDetails = categorieData.data;
         console.log(context.categorieDetails);
       });
-    }    
+    }
   }
 
 private createCategorie(){
@@ -134,7 +134,7 @@ private createCategorie(){
   })
   }
 
-  private updateCategorie() {    
+  private updateCategorie() {
   console.log(this.form.value);
     this.categorieService.updateCategorie(this.categoryId, this.form.value).subscribe(res => {
       console.log('Categorie update successfully!');
@@ -142,7 +142,7 @@ private createCategorie(){
     });
   }
 
-  
+
 
 
 }

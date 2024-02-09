@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Post } from './post.model';
+import { Post } from '../posts/post.model';
 import { map } from 'rxjs/operators';     //The map() method allows us to transform every element of an array into a new element and store them all back into a new array.
 import { Router } from '@angular/router';
 
@@ -82,7 +82,7 @@ export class PostsService {
     });
   }
 
-  
+
 
 
 
